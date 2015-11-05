@@ -104,6 +104,14 @@ html, body {
   padding-left: 1em;
 }
 
+.cucumber-report .duration {
+  font-size: 80%;
+  line-height: 14px;
+  color: #666;
+  float: right;
+  white-space: nowrap;
+}
+
 .cucumber-report .description {
   font-style: italic;
   margin-left: 20px;

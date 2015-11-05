@@ -69,6 +69,19 @@
       $('<span>').addClass('keyword').text(element.keyword).appendTo(node);
     if (element.name)
       $('<span>').addClass('name').text(element.name).appendTo(node);
+
+    if (element.result && element.result.duration)
+      {
+      var duration, milliseconds = Math.ceil(element.result.duration / 1e6);
+      if (element.result.duration < 900000)
+        duration = '< 1 ms';
+      else if (milliseconds > 1000)
+        duration = (Math.round(milliseconds / 100) * 10) + ' s';
+      else
+        duration = Math.round(milliseconds) + ' ms';
+      $('<span>').addClass('duration').text(duration).appendTo(node);
+      }
+
     if (element.description)
       $('<p>').addClass('description').text(element.description).appendTo(node);
     if (element.doc_string)
@@ -151,7 +164,7 @@
       })
       .done(function(results, status, jqXHR)
         {
-        console.log(results);
+        // console.log(results);
         output.html('');
 
         // render results as HTML into output
@@ -163,7 +176,7 @@
       .fail(function(err)
         {
         errors.html(err.statusText + "<br/>" + err.responseText);
-        errorsContainer.show().collapse('show');
+        errorsContainer.show().find('.panel-collapse').collapse('show');
         scrollIntoView(errorsContainer);
         });
     }
