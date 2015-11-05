@@ -1,0 +1,196 @@
+html, body {
+  margin:1em;
+  min-height:100%;
+  font-family: Helvetica, Arial, Freesans, sans-serif;
+  font-size: .95em;
+}
+
+.h1, h1 {
+  margin: 10px 0 20px 0;
+}
+
+.h2, h2 {
+  font-size: 25px;
+}
+
+.splitview .left,
+.splitview .right {
+  margin-bottom: 4em;
+}
+
+#feature, #output, #errors {
+  font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+  font-size: 11px;
+}
+
+#feature, #errors {
+  width: 99%;
+}
+
+#feature {
+  height: 30em;
+  background-color: #f9f9f9;
+}
+
+#output {
+  width: 100%;
+}
+
+#errors {
+  color: #a30;
+}
+
+#errors-container {
+  display: none;
+}
+
+#right-accordion .panel-collapse {
+  position: relative;
+}
+
+#right-accordion .panel-collapse .btn-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.panel .panel-body.pre {
+  font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+  font-size: 11px;
+  white-space: pre;
+  word-wrap: inherit;
+  overflow: auto;
+}
+
+.panel .panel-body.pre:before {
+  display: none;
+}
+
+.editor-resizer {
+  display: block;
+  width: 99%;
+  padding: 1px 0 0 0;
+  overflow: hidden;
+  margin: 3px 0 20px 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  cursor: ns-resize;
+}
+
+/* html formatter */
+
+.cucumber-report div,
+.cucumber-report ol.steps li {
+  display: block;
+  padding: 0.2em 0.4em;
+  margin-bottom: 0.2em;
+}
+
+.cucumber-report .keyword {
+  font-weight: bold;
+}
+
+.cucumber-report .scenario > .keyword + .name {
+  padding-left: 1em;
+}
+
+.cucumber-report .description {
+  font-style: italic;
+  margin-left: 20px;
+}
+
+.cucumber-report > section {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.cucumber-report ol.steps {
+  list-style-type: none;
+  margin-top: 0.6em;
+  margin-bottom: 0;
+}
+
+.cucumber-report .doc_string {
+  margin: 0 0 0 20px;
+  padding: 0.2em;
+  background-color: rgba(255,255,255,0.2);
+  white-space: pre;
+}
+
+.cucumber-report table {
+  border-collapse: collapse;
+  border: 1px;
+  border-style: solid;
+}
+
+.cucumber-report td, .cucumber-report th {
+  border: 1px;
+  border-style: solid;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.cucumber-report table {
+  margin-left: 20px;
+}
+
+.cucumber-report thead {
+  background-color: #C0C0C0;
+}
+
+.cucumber-report .passed {
+  background-color: #C5D88A;
+}
+
+.cucumber-report .undefined, .cucumber-report .pending {
+  background-color: #EAEC2D;
+}
+
+.cucumber-report .skipped {
+  background-color: #d9edf7;
+}
+
+.cucumber-report .failed {
+  background-color: #D88A8A;
+}
+
+.cucumber-report .tags {
+  display: block;
+}
+
+.cucumber-report .tag {
+  margin-right: 0.25em;
+  color: #246ac1;
+}
+
+.cucumber-report .comments {
+  display: inline;
+}
+
+.cucumber-report .comment {
+  margin 0;
+  padding 0;
+}
+
+.cucumber-report .error {
+  margin: .2em .75em;
+  padding: .2em;
+  border: 1px solid #900;
+  background-color: #EDBBBB;
+}
+
+.cucumber-report .embedding {
+  margin: .2em 0;
+  padding: .2em;
+  background-color: #EDEDED;
+  white-space: pre;
+  overflow: auto;
+}
+
+.cucumber-report .loading {
+  color: #ccc;
+}
+
+#cucumber-templates {
+  display: none;
+}

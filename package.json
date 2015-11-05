@@ -1,0 +1,11 @@
+{
+  "name": "cucumber-apickli-toolkit",
+  "version": "0.0.1",
+  "description": "Integration testing toolkit for API services",
+  "dependencies": {
+    "apickli": "latest",
+    "request": "^2.55.0",
+    "express": "~4.13.3",
+    "body-parser": "~1.14.1"
+  }
+}
