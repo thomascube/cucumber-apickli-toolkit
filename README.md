@@ -9,10 +9,17 @@ and connectivity.
 ## How to start
 
 We depend on Apickli and Cucumber.js. Thus those dependencies need to be installed first:
-
 ```sh
 $ npm install
 ```
+
+You can also consider to install Cucumber.js globally:
+```sh
+$ npm install -g cucumber
+```
+
+In this case, remove the "cucumber" entry from this projects `package.json` file
+before installing the dependencies.
 
 ### Start new project
 
