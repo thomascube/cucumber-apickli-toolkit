@@ -44,6 +44,16 @@ html, body {
   display: none;
 }
 
+#th-output {
+  position: relative;
+}
+
+#th-output .btn-clear {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
 #right-accordion .panel-collapse {
   position: relative;
 }

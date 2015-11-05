@@ -21,7 +21,36 @@
               range.select();
           }
       });
-  };;
+  };
+
+  // render collapsible panels for each feature
+  function renderFeatures(data)
+    {
+    $.each(data, function(j, feature)
+      {
+      $('<div class="panel panel-default">')
+        .append(
+          $('<div class="panel-heading" role="tab">')
+            .append(
+              $('<h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#right-accordion" aria-expanded="false">')
+                .attr('href', '#feature-'+j)
+                .attr('aria-controls', 'feature-'+j)
+                .text(feature[0])
+            )
+        )
+        .append(
+          $('<div class="panel-collapse collapse" role="tabpanel">')
+            .attr('id', 'feature-'+j)
+            .append(
+              $('<div class="panel-body pre">').text(feature[1])
+            )
+            .append(
+              $('<a class="btn btn-info btn-xs btn-copy">').text('Copy')
+            )
+        )
+        .appendTo('#right-accordion');
+      });
+    }
 
   function renderReportNode(element, tagname)
     {
@@ -105,7 +134,6 @@
     var outputPanel     = $('#panel-output');
     var errors          = $('#errors');
     var errorsContainer = $('#errors-container').hide();
-    var featureSource   = $('#feature').val();
     var postdata = { feature: editor.getValue() };
 
     // clear output container
@@ -148,7 +176,13 @@
   editor.getSession().setUseSoftTabs(true);
 
   // register button actions
-  $('#run-feature').click(runFeature);
+  $('#run-feature').on('click', runFeature);
+  $('#th-output .btn-clear').on('click', function(e)
+    {
+    $('#output').html('');
+    $('#panel-output').collapse('hide');
+    });
+
   $('#right-accordion').on('click', '.panel-collapse .btn-copy', function(e)
     {
     var source = $(e.target).parent().find('.panel-body.pre').text();
@@ -159,41 +193,18 @@
     editor.focus();
     });
 
+  $('#feature-resizer')
+    .drag('start', function(ev, dd) { dd.height = $('#feature').height(); })
+    .drag(function(ev, dd) { $('#feature').css('height', Math.max(200, dd.height + dd.deltaY)); })
+    .drag('end', function(ev, dd) { editor.resize(); })
 
-  // load feature reference
+  // load step definitions
   $.get('/reference', function(data)
     {
     $('#feature-reference .panel-body').text(data);
     });
 
-  // load feature reference
-  $.get('/features', function(data)
-    {
-    // render collapsible panel for each feature
-    $.each(data, function(j, feature)
-      {
-      $('<div class="panel panel-default">')
-        .append(
-          $('<div class="panel-heading" role="tab">')
-            .append(
-              $('<h4 class="panel-title" role="button" data-toggle="collapse" data-parent="#right-accordion" aria-expanded="false">')
-                .attr('href', '#feature-'+j)
-                .attr('aria-controls', 'feature-'+j)
-                .text(feature[0])
-            )
-        )
-        .append(
-          $('<div class="panel-collapse collapse" role="tabpanel">')
-            .attr('id', 'feature-'+j)
-            .append(
-              $('<div class="panel-body pre">').text(feature[1])
-            )
-            .append(
-              $('<a class="btn btn-info btn-xs btn-copy">').text('Copy')
-            )
-        )
-        .appendTo('#right-accordion');
-      });
-    });
+  // load feature library
+  $.get('/features', renderFeatures);
 
   })(jQuery);
