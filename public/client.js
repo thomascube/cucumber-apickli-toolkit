@@ -76,7 +76,7 @@
       if (element.result.duration < 900000)
         duration = '< 1 ms';
       else if (milliseconds > 1000)
-        duration = (Math.round(milliseconds / 100) * 10) + ' s';
+        duration = (Math.round(milliseconds / 100) / 10) + ' s';
       else
         duration = Math.round(milliseconds) + ' ms';
       $('<span>').addClass('duration').text(duration).appendTo(node);
