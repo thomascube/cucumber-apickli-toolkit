@@ -8,6 +8,6 @@
     "express": "~4.13.3",
     "body-parser": "~1.14.1",
     "cucumber": "~0.8.1",
-    "express-handlebars": "~3.0.3"
+    "express-handlebars": "latest"
   }
 }
