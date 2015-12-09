@@ -2,6 +2,7 @@
 
 var path = require('path');
 var express = require('express');
+var expressHbs  = require('express-handlebars');
 var bodyParser = require('body-parser');
 var Cucumber = require('cucumber');
 
@@ -9,10 +10,17 @@ var app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json()); // for parsing application/json
 
+app.engine('hbs', expressHbs({ extname:'hbs', defaultLayout:false }));
+app.set('view engine', 'hbs');
+
 app.get('/', function(req, res)
   {
+  var config = require('./config/environment.js');
+  if (!config.service_name)
+    config.service_name = config.service_url.replace(/^[htps]+:\/\//, '');
+
   res.append('Content-Type', 'text/html');
-  res.sendFile('./client/index.html');
+  res.render('index', { layout:false, config: config });
   });
 
 app.get('/reference', function(req, res)
@@ -60,7 +68,6 @@ app.get('/features', function(req, res)
 app.post('/run', function(req, res)
   {
   var configuration = Cucumber.Cli.Configuration(['node', 'cucumber.js', '--tag=~@disabled']);
-  var runtime   = Cucumber.Runtime(configuration);
   var formatter = Cucumber.Listener.JsonFormatter({});
   var listeners = Cucumber.Type.Collection();
   listeners.add(formatter);
