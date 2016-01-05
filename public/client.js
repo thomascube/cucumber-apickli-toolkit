@@ -156,7 +156,7 @@
 
     // submit feature for execution
     $.ajax({
-      url: '/run',
+      url: './run',
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(postdata),
@@ -212,12 +212,12 @@
     .drag('end', function(ev, dd) { editor.resize(); })
 
   // load step definitions
-  $.get('/reference', function(data)
+  $.get('./reference', function(data)
     {
     $('#feature-reference .panel-body').text(data);
     });
 
   // load feature library
-  $.get('/features', renderFeatures);
+  $.get('./features', renderFeatures);
 
   })(jQuery);
